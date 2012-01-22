@@ -1,22 +1,25 @@
-{- | 
-  Theta-functions implemented on top of trigonometric series.
-  Theta-functions are special functions of several complex variables
-  Their importance is that we can construct an elliptic functions from
-  combination of theta-functions
+-- | 
+--   Theta-functions implemented on top of trigonometric series.
+--
+--   Theta-functions are special functions of several complex variables
+--   Their importance is that we can construct an elliptic functions from
+--   combination of theta-functions, see details at
+--   <http://en.wikipedia.org/wiki/Theta_function>.
+--
+--   Depend on parameter Tau, which should be positive.
+--   Call every function in the following form:
+--
+--   @theta1 N (qpar Tau) U@
+--
+--   where @N@ is a number of addends in series representing the function, 
+--   @Tau@ is a tau parameter defining the theta-function and
+--   @U@ is an argument, which is a complex number.
+--
+--   WARNING: theta-functions are raising their values very quickly when arg is raising. 
+--   This depends on behaviour of cos and sin of complex functions, 
+--   which are very rapidly increasing their values.
+--   Call theta-functions with n < 20, q < 1, |u| < pi.
 
-  http://en.wikipedia.org/wiki/Theta_function
-
-  Depend on parameter <tau>, which should be positive
-  Call every function as thetaN <n> (qpar <tau>) <u>
-  where <n> is a number of addends in series representing the function
-  <tau> is a tau parameter defining the theta-function
-  <u> is an argument, which is a complex number
-
-  WARNING: theta-functions are raising their values very quickly when arg is raising. 
-  This depends on behaviour of cos and sin of complex functions, 
-  which are very rapidly increasing their values.
-  Call theta-functions with n < 20, q < 1, |u| < pi
--}
 module Numeric.Functions.Theta (
     qpar,
     theta1,
@@ -67,6 +70,7 @@ qpar tau
   | otherwise = throw $ ErrorCall "tau should be > 0 !"
 
 -- | Complex signum function.
+--   Equivalent to raising (-1) to the power of n
 signfun :: (RealFloat a) => Integer -> Complex a
 signfun nn
   | odd nn = ((-1) :+ 0)

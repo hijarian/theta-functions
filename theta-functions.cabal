@@ -1,5 +1,5 @@
 Name:                theta-functions
-Version:             1.0.0
+Version:             1.0.1
 Cabal-version:       >= 1.6
 Synopsis:            Theta-functions implemented as trigonometric series
 
